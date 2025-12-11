@@ -30,8 +30,21 @@ class Test_Map(unittest.TestCase):
         middle_of_map = self.map.get_valid_moves((5,5))
         edge_of_map = self.map.get_valid_moves((1,5))
         corner_of_map = self.map.get_valid_moves((20, 23))
+        odd_corner_of_map = self.map.get_valid_moves((1, 23))
 
+        middle_set = {(5,4), (6,4), (6,5), (5,6), (4,5), (4,4)}
         assert len(middle_of_map) == 6
+        assert middle_set.issubset(middle_of_map)
+
+        edge_set = {(1,4), (2,4), (2,5), (1,6)}
         assert len(edge_of_map) == 4
-        assert len(corner_of_map) == 2
+        assert edge_set.issubset(edge_of_map)
+
+        corner_set = {(19,23), (20,22)}        
+        assert len(corner_of_map) == 2        
+        assert corner_set.issubset(corner_of_map)
+
+        odd_corner_set = {(1,22), (2,22), (2,23)}
+        assert len(odd_corner_of_map) == 3
+        assert odd_corner_set.issubset(odd_corner_of_map)
 
