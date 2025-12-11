@@ -9,13 +9,20 @@ hexes = [
 ]
 
 def hex_clicked(sender, app_data):
-    mouse_pos = dpg.get_mouse_pos(local=True)
-    mouse_x = mouse_pos[0]
-    mouse_y = mouse_pos[1]
+    # Get global mouse position
+    mouse_x, mouse_y = dpg.get_mouse_pos(local=False)
+    
+    # Get the drawlist position on screen
+    canvas_x = dpg.get_item_pos("canvas")[0]
+    canvas_y = dpg.get_item_pos("canvas")[1]
+    
+    # Convert to canvas-local coordinates
+    local_x = mouse_x - canvas_x
+    local_y = mouse_y - canvas_y
     
     for hex_data in hexes:
-        dx = mouse_x - hex_data["screen_x"]
-        dy = mouse_y - hex_data["screen_y"]
+        dx = local_x - hex_data["screen_x"]
+        dy = local_y - hex_data["screen_y"]
         distance = (dx*dx + dy*dy) ** 0.5
         
         if distance <= hex_data["radius"]:
