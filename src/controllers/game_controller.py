@@ -6,3 +6,6 @@ class GameController:
     def move_player(self, pos):
         # After validating the position, checking for getting lost, etc.
         self.game_state.current_pos = pos
+
+    def get_valid_moves(self):
+        return self.game_map.get_valid_moves(self.game_state.current_pos)
