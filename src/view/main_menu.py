@@ -2,6 +2,7 @@ import dearpygui.dearpygui as dpg
 import random
 from ..models.gamestate import GameState
 from ..common.game_text import GameText, TextCategory
+from ..common.wealth import wealth_check
 from .view import View
 
 
@@ -43,9 +44,9 @@ class MainMenu:
         # Create game state with starting position
         game_state = GameState(
             current_pos=starting_hex,
-            gold=0,
+            gold=wealth_check(2),
             days=1,
-            food=10,
+            food=0,
             endurance=9
         )
 

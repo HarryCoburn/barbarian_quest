@@ -8,4 +8,5 @@ class GameState:
     food: int = 10
     endurance: int = 9
     wealth_code: int = 2
+    combat_skill: int = 8
     wits: int = 6 # TODO Will be a random number between 2 and 6
